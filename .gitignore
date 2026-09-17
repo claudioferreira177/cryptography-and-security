@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Generated cryptographic files
+*.key
+*.enc
+*.dec
