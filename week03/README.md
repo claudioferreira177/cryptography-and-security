@@ -68,7 +68,7 @@ Enter the same passphrase at each prompt. The program reads it from standard inp
 
 ## Security Analysis
 
-### Q2 — What happens if the nonce is fixed?
+### Q1 — What happens if the nonce is fixed?
 
 Reusing the same key, nonce, and initial counter repeats the keystream. If `C1 = P1 XOR S` and `C2 = P2 XOR S`, then:
 
@@ -80,7 +80,7 @@ A known plaintext fragment reveals the corresponding keystream bytes and therefo
 
 The nonce must not repeat under the same key. Random generation makes collisions unlikely for a small exercise, but an 8-byte random nonce does not guarantee uniqueness and collision risk grows with the number of encryptions.
 
-### Q3 — Can one flipped bit alter the entire file?
+### Q2 — Can one flipped bit alter the entire file?
 
 In the ciphertext payload, flipping one bit flips only the corresponding plaintext bit because decryption computes `P = C XOR S`. It does not propagate through the remaining plaintext. This enables a controlled replacement with:
 
