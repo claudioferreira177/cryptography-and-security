@@ -43,7 +43,7 @@ def pad_orcl(ctxt):
 if __name__ == "__main__":
     print("PKCS7 de 'abc':", list(pad(b"abc")))
     # Q1: mantém 16 bytes, mas 0x00 não é um tamanho válido de padding.
-    invalid_padding = pad(b"abc")[:-1] + b"\x00"
+    invalid_padding = pad(b"abc")[:15] + b"\x00"
     try:
         unpad(invalid_padding)
     except ValueError:
@@ -51,8 +51,8 @@ if __name__ == "__main__":
 
     ctxt = enc(b"Ola Mundo")  # sete bytes de padding
     altered = bytearray(ctxt)
-    altered[-17] ^= 7  # IV: transforma o último byte do plaintext em 0x00
+    altered[15] ^= 7  # IV: transforma o último byte do plaintext em 0x00
     print("Criptograma válido:", pad_orcl(ctxt))
     print("Padding adulterado:", pad_orcl(bytes(altered)))
-    print("Criptograma truncado:", pad_orcl(ctxt[:-1]))
+    print("Criptograma truncado:", pad_orcl(ctxt[:len(ctxt) - 1]))
     print("Criptograma vazio:", pad_orcl(b""))

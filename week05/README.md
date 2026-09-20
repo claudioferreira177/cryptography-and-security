@@ -41,7 +41,7 @@ A block can have the correct length but invalid padding:
 ```python
 from cbc_pad_orcl import pad, unpad
 
-invalid = pad(b"abc")[:-1] + b"\x00"
+invalid = pad(b"abc")[:15] + b"\x00"
 assert len(invalid) == 16
 try:
     unpad(invalid)
