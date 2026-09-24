@@ -7,3 +7,5 @@ __pycache__/
 *.enc
 *.dec
 *.sk
+*.dhsk
+*.rsask
